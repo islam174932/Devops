@@ -7,16 +7,16 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: testpool  # Using your custom agent pool
 
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    mavenPomFile: 'pom.xml'  # Path to your pom.xml file
+    mavenOptions: '-Xmx3072m'  # Maven options (optional)
+    javaHomeOption: 'JDKVersion'  # JDK version to use
+    jdkVersionOption: '11'  # Adjust to your Java version
+    jdkArchitectureOption: 'x64'  # Architecture of JDK
+    publishJUnitResults: true  # Publish JUnit test results
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
+    goals: 'package'  # Goals to run (e.g., clean, install, package)
