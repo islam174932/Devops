@@ -9,11 +9,11 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'  # Path to your pom.xml file
     mavenOptions: '-Xmx3072m'  # Optional Maven options
+    mavenHomeOption: 'path'  # Specify that we are using a custom path
+    mavenHome: 'C:\maven\apache-maven-3.9.1'  # Path to Maven home (without /bin)
     publishJUnitResults: true  # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
     goals: 'package'  # Goals to run (e.g., clean, install, package)
-    mavenHomeOption: 'path'  # Use custom Maven path
-    mavenHome: 'C:\maven\apache-maven-3.9.1\bin'  # Specify the path to Maven here
 
 - task: PublishBuildArtifacts@1
   inputs:
