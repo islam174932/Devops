@@ -12,11 +12,14 @@ steps:
     publishJUnitResults: true  # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
     goals: 'package'  # Goals to run (e.g., clean, install, package)
+    mavenHomeOption: 'path'  # Use custom Maven path
+    mavenHome: 'C:\maven\apache-maven-3.9.1\bin'  # Specify the path to Maven here
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'target'  # Path to the directory where artifacts are stored
     ArtifactName: 'JavaBuildArtifacts'  # Name of the published artifact
     publishLocation: 'Container'  # Publish location
+
 
 
