@@ -5,7 +5,18 @@ pool:
   name: Default  # Use your registered agent pool
 
 steps:
-- script: echo "No Maven tasks are defined in this pipeline."
-  displayName: 'Placeholder Step'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'  # Path to your pom.xml file
+    mavenOptions: '-Xmx3072m'  # Optional Maven options
+    publishJUnitResults: true  # Publish JUnit test results
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
+    goals: 'package'  # Goals to run (e.g., clean, install, package)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'target'  # Path to the directory where artifacts are stored
+    ArtifactName: 'JavaBuildArtifacts'  # Name of the published artifact
+    publishLocation: 'Container'  # Publish location
 
 
