@@ -2,8 +2,7 @@
 trigger:
 - main
 
-pool: 
-  name: testpool    # Changed to use your custom pool
+   # Changed to use your custom pool
 
 steps:
 - checkout: self
