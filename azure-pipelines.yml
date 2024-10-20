@@ -1,18 +1,12 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
 pool: 
-  name: Default # Using the default self-hosted agent pool
-  demands:
-  - Agent.OS -equals Windows_NT  # Remove this line if your agent is not on Windows
+  name: testpool    # Changed to use your custom pool
 
 steps:
-- checkout: self  # Explicitly add checkout step
+- checkout: self
   
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -20,4 +14,4 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  displayName: 'Run a multi-line script't'
