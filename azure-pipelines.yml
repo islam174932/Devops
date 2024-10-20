@@ -18,4 +18,20 @@ steps:
     publishJUnitResults: true  # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
     goals: 'package'  # Goals to run (e.g., clean, install, package)
+  
+- script: |
+    echo "Build succeeded!"
+  displayName: 'Success Message'
+
+- script: |
+    echo "Build failed. Please check the logs."
+  condition: failed()
+  displayName: 'Failure Message'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'target'  # Path to the directory where artifacts are stored
+    ArtifactName: 'JavaBuildArtifacts'  # Name of the published artifact
+    publishLocation: 'Container'  # Publish location
+
 
