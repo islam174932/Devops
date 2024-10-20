@@ -1,5 +1,4 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
+# CI/CD Pipeline for Maven Project
 
 trigger:
 - main
@@ -11,22 +10,13 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'  # Path to your pom.xml file
-    mavenOptions: '-Xmx3072m'  # Maven options (optional)
+    mavenOptions: '-Xmx3072m'  # Optional Maven options
     javaHomeOption: 'JDKVersion'  # JDK version to use
-    jdkVersionOption: '17'  # Change to 17 if that's your installed version
+    jdkVersionOption: '17'  # Change to your installed version
     jdkArchitectureOption: 'x64'  # Architecture of JDK
     publishJUnitResults: true  # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
     goals: 'package'  # Goals to run (e.g., clean, install, package)
-  
-- script: |
-    echo "Build succeeded!"
-  displayName: 'Success Message'
-
-- script: |
-    echo "Build failed. Please check the logs."
-  condition: failed()
-  displayName: 'Failure Message'
 
 - task: PublishBuildArtifacts@1
   inputs:
