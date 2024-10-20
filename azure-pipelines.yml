@@ -1,10 +1,8 @@
-# CI/CD Pipeline for Maven Project
-
 trigger:
 - main
 
 pool:
-  name: testpool  # Use your custom agent pool
+  name: Default  # Use your registered agent pool (replace 'testpool' with 'Default')
 
 steps:
 - task: Maven@3
