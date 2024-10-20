@@ -1,19 +1,39 @@
-# Starter pipeline
+# Pipeline triggers when changes are pushed to the main branch
 trigger:
-- main
+- main  # Replace with your branch if different
 
-pool: 
-  vmImage: ubuntu-latest   # Use the Ubuntu image for the pool
+# Define the pool to use. In this case, we're using the self-hosted agent.
+pool:
+  name: Default  # Name of the pool where the self-hosted agent is registered
+  demands:
+    - maven  # Ensure Maven is available on the agent (optional based on your project)
 
+# List of steps to run in this pipeline
 steps:
+
+# Check out the repository's code
 - checkout: self
-  
-- script: echo Hello, world!
+
+# Step to echo a one-line script for verification
+- script: echo "Hello, world!"
   displayName: 'Run a one-line script'
 
+# Step to echo a multi-line script for verification
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    echo "Add other tasks to build, test, and deploy your project."
+    echo "See https://aka.ms/yaml"
   displayName: 'Run a multi-line script'
+
+# Maven build step (optional if you're using Maven to build Java projects)
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'   # Path to your POM file
+    mavenOptions: '-Xmx3072m' # Memory options for Maven
+    javaHomeOption: 'JDKVersion' # Use specific JDK version
+    jdkVersionOption: '1.11'     # You can specify other versions like 1.8 or 17
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true    # Enable publishing JUnit test results
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'  # Define Maven goals (e.g., clean, install, package)
 
 
