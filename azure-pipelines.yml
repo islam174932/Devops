@@ -4,17 +4,6 @@ trigger:
 pool: 'Default'
 
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'AzureStorage' # Changed from PreInstalled to AzureStorage
-    azureResourceManagerEndpoint: # Leave empty for now
-    azureStorageAccountName: # Leave empty for now
-    azureContainerName: # Leave empty for now
-    azureCommonVirtualFile: 'jdk-11.0.21_windows-x64_bin.zip' # Example filename
-    jdkDestinationDirectory: '$(agent.toolsDirectory)/java'
-
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -23,4 +12,4 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
-    mavenVersionOption: 'Default'
+    mavenVersionOption: 'package'
