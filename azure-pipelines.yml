@@ -16,8 +16,9 @@ steps:
     mavenFeed: 'MyMavenFeed'      # Specify your Maven feed name
     options: '-s $(MAVEN_SETTINGS_PATH)'  # Maven settings file path
     mavenPathOption: 'mavenPath'  # Option to specify custom Maven path
-    mavenPath: 'C:\maven\apache-maven-3.9.1\bin\mvn'  # Path to Maven executable
+    mavenPath: 'C:\maven\apache-maven-3.9.1\bin\mvn.cmd'  # Path to Maven executable (use mvn.cmd for Windows)
     javaHomeOption: 'JDKVersion' # Specify the JDK version
     jdkVersionOption: '17'       # Change to the desired JDK version (e.g., 17)
     jdkArchitectureOption: 'x64'  # Architecture of JDK
+
 
