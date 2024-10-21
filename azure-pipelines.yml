@@ -11,6 +11,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'  # Changed to match your installed Java version
-    mavenVersionOption: 'Path'  # Specify we want to use a custom Maven installation
+    jdkVersionOption: '17'  # Updated to match your installed Java version (17)
+    mavenVersionOption: 'Path'  # Use a custom Maven installation
     mavenPath: 'C:\maven\apache-maven-3.9.1'  # Path to your Maven installation
+
