@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool: 
-  name: Default  # Set the default agent pool
+  vmImage: windows-latest  # Use a Windows agent with pre-installed Maven
 
 steps:
 - task: Maven@3
@@ -17,8 +17,6 @@ steps:
     javaHomeOption: 'JDKVersion'                 # Specify to use a particular JDK version
     jdkVersionOption: '1.11'                     # JDK version 11
     jdkArchitectureOption: 'x64'                 # 64-bit architecture
-    mavenVersionOption: 'Custom'                 # Specify that you're using a custom Maven version
-    mavenDirectory: 'C:\maven\apache-maven-3.9.1'  # Correct Maven directory (without the duplicate bin)
     publishJUnitResults: true                    # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Test result files pattern
     goals: 'package'                             # Maven goal to package the project (creates a JAR or WAR)
