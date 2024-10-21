@@ -8,11 +8,12 @@ steps:
   inputs:
     versionSpec: '11'
     jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-
-- task: MavenAuthenticate@0
-  inputs:
-    artifactsFeeds: 
+    jdkSourceOption: 'AzureStorage' # Changed from PreInstalled to AzureStorage
+    azureResourceManagerEndpoint: # Leave empty for now
+    azureStorageAccountName: # Leave empty for now
+    azureContainerName: # Leave empty for now
+    azureCommonVirtualFile: 'jdk-11.0.21_windows-x64_bin.zip' # Example filename
+    jdkDestinationDirectory: '$(agent.toolsDirectory)/java'
 
 - task: Maven@3
   inputs:
@@ -23,7 +24,3 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx3072m'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
