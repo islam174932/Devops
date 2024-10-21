@@ -6,8 +6,8 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: 
+  name: Default  # Use the "Default" pool defined in your Azure DevOps environment
 
 steps:
 - task: Maven@3
