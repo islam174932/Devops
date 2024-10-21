@@ -9,10 +9,15 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'  # Path to your pom.xml file
     goals: 'clean install'     # Maven goals to execute
+    mavenOptions: '-Xmx1024m' # Optional Maven options (memory limit)
     publishJUnitResults: true   # Publish JUnit test results
     testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
+    mavenAuthenticateFeed: true  # Authenticate to the Maven feed
+    mavenFeed: 'MyMavenFeed'      # Specify your Maven feed name
+    options: '-s $(MAVEN_SETTINGS_PATH)'  # Maven settings file path
+    mavenPathOption: 'mavenPath'  # Option to specify custom Maven path
+    mavenPath: 'C:\maven\apache-maven-3.9.1\bin\mvn'  # Path to Maven executable
     javaHomeOption: 'JDKVersion' # Specify the JDK version
     jdkVersionOption: '17'       # Change to the desired JDK version (e.g., 17)
     jdkArchitectureOption: 'x64'  # Architecture of JDK
-    mavenOptions: '-Xmx3072m'    # Optional Maven options
-                           # Maven goal to package the project (creates a JAR or WAR)
+
