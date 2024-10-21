@@ -1,24 +1,29 @@
 trigger:
-- main  # Replace with your branch name if different
+- main
 
-pool:
-  name: Default  # Use the Default agent pool
+pool: 'Default'
 
 steps:
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+- task: MavenAuthenticate@0
+  inputs:
+    artifactsFeeds: 
+
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'  # Path to your pom.xml file
-    goals: 'clean install'     # Maven goals to execute
-    mavenOptions: '-Xmx1024m' # Optional Maven options (memory limit)
-    publishJUnitResults: true   # Publish JUnit test results
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'  # Path to test results
-    mavenAuthenticateFeed: true  # Authenticate to the Maven feed
-    mavenFeed: 'MyMavenFeed'      # Specify your Maven feed name
-    options: '-s $(MAVEN_SETTINGS_PATH)'  # Maven settings file path
-    mavenPathOption: 'mavenPath'  # Option to specify custom Maven path
-    mavenPath: 'C:\maven\apache-maven-3.9.1\bin\mvn.cmd'  # Path to Maven executable (use mvn.cmd for Windows)
-    javaHomeOption: 'JDKVersion' # Specify the JDK version
-    jdkVersionOption: '17'       # Change to the desired JDK version (e.g., 17)
-    jdkArchitectureOption: 'x64'  # Architecture of JDK
-
-
+    mavenPomFile: 'pom.xml'
+    goals: 'clean package'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx3072m'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
