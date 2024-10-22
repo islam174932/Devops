@@ -15,3 +15,7 @@ steps:
     mavenVersionOption: 'Path'  # Use a custom Maven installation
     mavenPath: 'C:\maven\apache-maven-3.9.1'  # Path to your Maven installation
 
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/.war'
+    TargetFolder: ': $(build.artifactstagingdirectory)'
